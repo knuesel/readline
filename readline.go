@@ -278,6 +278,11 @@ func ClearPrompt() {
 	C.rl_redisplay()
 }
 
+// Returns the length of the current user input as a number of bytes.
+func Length() int {
+	return int(C.rl_end)
+}
+
 // Cleanup() frees internal memory and restores terminal
 // attributes. This function should be called when program execution
 // stops before the return of a String() call, so as not to leave the
