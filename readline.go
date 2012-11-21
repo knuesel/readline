@@ -271,6 +271,13 @@ func SaveHistory(path string) error {
 	return syscall.Errno(e)
 }
 
+// Redisplay the current prompt, discarding current user input.
+func ClearPrompt() {
+	var empty C.char
+	C.rl_replace_line(&empty, 1)
+	C.rl_redisplay()
+}
+
 // Cleanup() frees internal memory and restores terminal
 // attributes. This function should be called when program execution
 // stops before the return of a String() call, so as not to leave the
